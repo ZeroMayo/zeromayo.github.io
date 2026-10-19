@@ -4,7 +4,7 @@ function downloadClient()
 	
 	console.log("The platform is " + platform);
 	
-	window.location.href = "https://github.com/ZeroMayo/NekoPlayer/releases/latest/download/NekoPlayer-win-Setup.exe";
+	window.location.href = "https://github.com/ZeroMayo/AX-Player/releases/latest/download/AXPlayer-win-Setup.exe";
 }
 
 async function getLatestRelease(owner, repo) {
@@ -44,7 +44,7 @@ async function getLatestRelease(owner, repo) {
 }
 
 // 예시: ultralytics/yolov5
-getLatestRelease('ZeroMayo', 'NekoPlayer');
+getLatestRelease('ZeroMayo', 'AX-Player');
 
 function getLang() {
     var lang = (navigator.languages != undefined)?navigator.languages[0]:navigator.language;
