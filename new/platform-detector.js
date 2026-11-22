@@ -3,20 +3,8 @@ function downloadClient()
 	const platform = window.navigator.platform;
 	
 	console.log("The platform is " + platform);
-	
-	switch (platform) 
-	{
-		case "Win32": 
-		{
-			window.location.href = "https://github.com/ZeroMayo/AX-Player/releases/latest/download/NekoPlayer-win-Setup.exe";
-			break;
-		}
-		case "Linux armv81": 
-		{
-			window.location.href = "https://github.com/ZeroMayo/AX-Player/releases/latest/download/io.zeromayo.axplayer.apk";
-			break;
-		}
-	}
+
+	window.location.href = platform.contains('Windows' ? "https://github.com/ZeroMayo/AX-Player/releases/latest/download/NekoPlayer-win-Setup.exe" : "https://github.com/ZeroMayo/AX-Player/releases/latest/download/io.zeromayo.axplayer.apk");
 }
 
 async function getLatestRelease(owner, repo) {
@@ -40,28 +28,14 @@ async function getLatestRelease(owner, repo) {
     console.log('Release Name:', data.name);
     console.log('Download URL:', data.html_url);
 	
-	const platform = window.navigator.platform;
+	const platform = window.navigator.userAgent;
 	var elem = document.getElementById("dl_text");
 
 	console.log("The platform is " + platform);
 	
-	switch (platform) 
-	{
-		case "Win32": 
-		{
-			var key = 'download_windows'; 
-			var lang = getLang();
-			elem.innerHTML = translate(key, lang).replace("{version}", data.name);
-			break;
-		}
-		case "Linux armv81": 
-		{
-			var key = 'download_android'; 
-			var lang = getLang();
-			elem.innerHTML = translate(key, lang).replace("{version}", data.name);
-			break;
-		}
-	}
+	var key = platform.contains('Windows' ? 'download_windows' : 'download_android'); 
+	var lang = getLang();
+	elem.innerHTML = translate(key, lang).replace("{version}", data.name);
 	
     return data;
   } catch (error) {
