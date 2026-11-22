@@ -1,10 +1,10 @@
 function downloadClient() 
 {
-	const platform = window.navigator.platform;
+	const platform = window.navigator.userAgent;
 	
 	console.log("The platform is " + platform);
 
-	window.location.href = platform.contains('Windows' ? "https://github.com/ZeroMayo/AX-Player/releases/latest/download/NekoPlayer-win-Setup.exe" : "https://github.com/ZeroMayo/AX-Player/releases/latest/download/io.zeromayo.axplayer.apk");
+	window.location.href = platform.includes('Android') ? "https://github.com/ZeroMayo/AX-Player/releases/latest/download/io.zeromayo.axplayer.apk" : "https://github.com/ZeroMayo/AX-Player/releases/latest/download/NekoPlayer-win-Setup.exe";
 }
 
 async function getLatestRelease(owner, repo) {
@@ -33,7 +33,7 @@ async function getLatestRelease(owner, repo) {
 
 	console.log("The platform is " + platform);
 	
-	var key = platform.contains('Windows' ? 'download_windows' : 'download_android'); 
+	var key = platform.includes('Android') ? 'download_android' : 'download_windows'; 
 	var lang = getLang();
 	elem.innerHTML = translate(key, lang).replace("{version}", data.name);
 	
