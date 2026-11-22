@@ -4,7 +4,19 @@ function downloadClient()
 	
 	console.log("The platform is " + platform);
 	
-	window.location.href = "https://github.com/ZeroMayo/AX-Player/releases/latest/download/AXPlayer-win-Setup.exe";
+	switch (platform) 
+	{
+		case "Win32": 
+		{
+			window.location.href = "https://github.com/ZeroMayo/AX-Player/releases/latest/download/NekoPlayer-win-Setup.exe";
+			break;
+		}
+		case "Linux armv81": 
+		{
+			window.location.href = "https://github.com/ZeroMayo/AX-Player/releases/latest/download/io.zeromayo.axplayer.apk";
+			break;
+		}
+	}
 }
 
 async function getLatestRelease(owner, repo) {
@@ -33,9 +45,23 @@ async function getLatestRelease(owner, repo) {
 
 	console.log("The platform is " + platform);
 	
-	var key = 'download_windows'; 
-	var lang = getLang();
-	elem.innerHTML = translate(key, lang).replace("{version}", data.name);
+	switch (platform) 
+	{
+		case "Win32": 
+		{
+			var key = 'download_windows'; 
+			var lang = getLang();
+			elem.innerHTML = translate(key, lang).replace("{version}", data.name);
+			break;
+		}
+		case "Linux armv81": 
+		{
+			var key = 'download_android'; 
+			var lang = getLang();
+			elem.innerHTML = translate(key, lang).replace("{version}", data.name);
+			break;
+		}
+	}
 	
     return data;
   } catch (error) {
